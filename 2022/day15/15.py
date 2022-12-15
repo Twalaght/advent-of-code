@@ -8,15 +8,10 @@ with open(sys.argv[1] if len(sys.argv) > 1 else "input.txt") as f:
 def distance(a, b): return abs(a[0] - b[0]) + abs(a[1] - b[1])
 
 scanners = []
-full = set()
 for line in data:
 	tmp = line.replace(":", "").replace(",", "").split(" ")
 	tmp = tuple([int(tmp[val][2:]) for val in [2, 3, 8, 9]])
 	scanners.append(((tmp[0], tmp[1]), (tmp[2], tmp[3])))
-
-def in_range(sensor, x, y):
-	dist = abs(sensor[0][0] - x) + abs(sensor[0][1] - y)
-	return dist <= distance(sensor[0], sensor[1])
 
 def scan(scanners, y):
 	ranges = []
